@@ -1,33 +1,38 @@
-한글판 문서 설명
+프로그 설명
 =================
-아카 인 액션 한글판에 맞춰 스칼라 2.12.2를 채택하고, 소스코드 주석을 한글로 번역하는 등의 수정을 가한 예제입니다.
+아카 인 액션 한글판 (Akka 코딩 공작소)의 2장 ticket 예제를 이용하여 myStack 액터 모델 구현
 
-- enshahar at gmail.com (오현석)
 
-Heroku deployment
+myStack 구현
 =================
 
-Heroku normally expects the project to reside in the root of the git repo.
-the source code for the up and running chapter is not in the root of the repo, so you need to use a different command to deploy to heroku:
+1. Main.scala
+   
+2. RestApi.scala
+   
+3. myStack.scala
+   
+4. DataMarchalling.scala
+    - 데이터 포맷 지정을 위한 설정
+   
+How to run
+    
+    sbt clean
+    sbt assembly
+    sbt run
 
-    git subtree push --prefix chapter-up-and-running heroku master
+프로그램 컴파일 시 아래와 같이 출력됨
 
-This command has to be executed from the root of the git repo, not from within the chapter directory.
-The git subtree command is not as featured as the normal push command, for instance, it does not provide a flag to force push,
-and it does not support the <local-branch>:<remote-branch> syntax which you can use with git push:
+    RestApi bound to /0:0:0:0:0:0:0:5000
 
-    git push heroku my-localbranch:master
 
-Which is normally used to deploy from a branch to heroku (pushing a branch to heroku master).
-It is possible to nest commands though, so if you want to push from a branch you can do the following:
+myStack에 데이터를 push할 때와 pop할 때 명령어
 
-    git push heroku `git subtree split --prefix chapter-up-and-running my-local-branch`:master
+    $curl -X GET -H 'Content type: application/json' 'http://localhost:5000/storage'
+    $curl -X POST -H 'Content type: application/json' 'http://localhost:5000/storage/1' -d 
+            '{ 
+                "data" : 1
+            }'
 
-Where *my-local-branch* is your local branch.
-Forcing a push can be done by nesting commands as well:
-
-    git push heroku `git subtree split --prefix chapter-up-and-running master`:master --force
-
-The above pushes the changes in local master to heroku master.
 
 
