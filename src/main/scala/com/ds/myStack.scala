@@ -2,8 +2,8 @@ package com.ds
 
 import scala.collection.immutable.Stack
 import akka.actor._
-
 import akka.util.Timeout
+import sun.awt.SunToolkit.OperationTimedOut
 
 object myStack{
 	def props = Props(new myStack)
@@ -26,10 +26,15 @@ class myStack extends Actor{
 
 	def receive: Receive = {
 		case GetData =>
-			val topData = dataset.top
-			println("pop: ",topData.num)
-			dataset = dataset.pop
-			sender() ! topData
+			if(dataset.isEmpty){
+				println("failed pop")
+				sender() ! None
+			}else{
+				val topData = dataset.top
+				println("pop: ",topData.num)
+				dataset = dataset.pop
+				sender() ! Some(topData)
+			}
 		case CreateData(data) =>
 			dataset = dataset.push(Data(data))
 			println(s"push: ${data}")
