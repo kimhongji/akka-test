@@ -23,7 +23,8 @@ How to run
 
 프로그램 컴파일 시 아래와 같이 출력됨
 
-    RestApi bound to /0:0:0:0:0:0:0:5000
+    INFO  [Slf4jLogger]: Slf4jLogger started
+    INFO  [myStack]: RestApi bound to /0:0:0:0:0:0:0:0:5000
 
 
 myStack에 데이터를 push할 때와 pop할 때 명령어
