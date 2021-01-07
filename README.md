@@ -2,6 +2,12 @@
 =================
 아카 인 액션 한글판 (Akka 코딩 공작소)의 2장 ticket 예제를 이용하여 myStack 액터 모델 구현
 
+TO DO
+=================
+1. future 사용
+2. dispatcher 사용
+3. thread pool 
+
 
 myStack 구현
 =================
