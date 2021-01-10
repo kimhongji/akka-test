@@ -7,7 +7,7 @@ TO DO
 1. future 사용
 2. dispatcher 사용
 3. thread pool 
-
+4. akka-http 개념 공부
 
 myStack 구현
 =================
